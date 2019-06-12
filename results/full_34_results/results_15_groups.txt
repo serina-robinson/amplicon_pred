@@ -1,0 +1,2 @@
+	Training size	Cutoff	Trees	Depth	Max_features	Iterations	OOB_score	Std_dev
+0.75	0	1000	20	0.1	3	0.834	0.002

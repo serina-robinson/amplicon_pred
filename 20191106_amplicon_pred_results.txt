@@ -1,0 +1,75 @@
+####====================================####
+# Monomer predictions
+
+# Training the models on MIBiG training sequences excluding fungal
+python3 pipeline.py --fasta data/sp2_adomains_9range_fungal_excluded.faa --trees 1000 --depth 20 --iterations 3 --train_size 0.75 --suffix 9range_nofung_monomers --features auto --cutoffs 7 --clean TRUE 
+
+
+# 10-fold CV results
+ Training size   Cutoff  Trees   Depth   Max_features    Iterations      OOB_score       Std_dev
+0.75    7       1000    20      auto    3       0.740   0.002
+
+# Testing results
+0.7925531914893617 # Overall test accuracy
+abu|ival: 1.000
+ala: 0.786
+arg: 0.000
+asn: 1.000
+asp: 1.000
+cl2-hpg|hpg: 0.750
+cys: 1.000
+dab: 1.000
+dhpg: 1.000
+gln: 1.000
+glu: 1.000
+gly: 0.923
+hpg: 0.000
+ile: 0.333
+leu: 0.783
+lys: 0.600
+oh-orn: 1.000
+orn: 0.500
+phe: 0.400
+pro: 1.000
+ser: 0.824
+thr: 1.000
+trp: 0.750
+tyr: 0.429
+val: 0.625
+
+# Saving the model to file
+filename = "models/best_rf_monomer_amplicon_model.sav" # save finalized model 
+
+# Running AdenylPred on Amplicons (with Xs replaced with '-')
+python3 adenylpred_hmmalign_amplicon_vittorio.py -i data/vittorio_amplicons_aligned_NRPS_Adomains_Xsremoved.fasta -x -o data/vittorio_amplicons_aligned_predictions.txt
+
+####====================================####
+# AA Group predictions
+
+# Training the models on MIBiG training sequences excluding fungal
+python3 pipeline.py --fasta data/sp2_adomains_9range_fungal_excluded.faa --trees 1000 --depth 20 --iterations 3 --train_size 0.75 --suffix 9range_nofung_groups --features auto --cutoffs 7 --clean TRUE --groups TRUE
+
+# 10-fold CV results
+Training size   Cutoff  Trees   Depth   Max_features    Iterations      OOB_score       Std_dev
+0.75    0       1000    20      auto    3       0.835   0.005
+
+Number of duplicates: 85
+0 data points omitted due to lack of support.
+
+# Testing results 
+Testing 15 properties:
+0.8706896551724138 # Overall test score results
+bulky: 0.822
+cys: 0.909
+lwat: 0.897
+pac: 0.948
+ringy: 0.857
+smh: 0.804
+tiny: 0.857
+
+# Saving the model to file
+filename = "models/best_rf_groups_amplicon_model.sav"
+
+# Running AdenylPred on Amplicons (with Xs replaced with '-')
+python3 adenylpred_hmmalign_amplicon_vittorio.py -i data/vittorio_amplicons_aligned_NRPS_Adomains_Xsremoved.fasta -x -o data/vittorio_amplicons_groups_predictions.txt
+

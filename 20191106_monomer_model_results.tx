@@ -1,0 +1,29 @@
+
+filename = "models/best_rf_monomer_amplicon_model.sav" # save finalized model 
+Testing 15 properties:
+0.7925531914893617
+abu|ival: 1.000
+ala: 0.786
+arg: 0.000
+asn: 1.000
+asp: 1.000
+cl2-hpg|hpg: 0.750
+cys: 1.000
+dab: 1.000
+dhpg: 1.000
+gln: 1.000
+glu: 1.000
+gly: 0.923
+hpg: 0.000
+ile: 0.333
+leu: 0.783
+lys: 0.600
+oh-orn: 1.000
+orn: 0.500
+phe: 0.400
+pro: 1.000
+ser: 0.824
+thr: 1.000
+trp: 0.750
+tyr: 0.429
+val: 0.625
